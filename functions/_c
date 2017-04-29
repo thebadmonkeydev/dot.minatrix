@@ -1,5 +1,8 @@
 #compdef c
-_files -W $PROJECTS -/
-_files -W $GOPATH/src/github.com -/
+_files -W ~/assembledbrands -/
+_files -W ~/sites -/
+_files -W ~/gems -/
+_files -W ~/bots -/
+_files -W ~/scripts -/
 
 # See further documentation in `functions/c`.
