@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+#  bu
+#
+#  `bu` is a small utility for creating a quick backup
+#  of a file you're working on:
+#
+#    bu .ackrc
+#
+# will move the file `.ackrc` to `.ackrc.backup`
+
+mv "${1}" "${1}.backup"

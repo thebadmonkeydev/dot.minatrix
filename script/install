@@ -1,27 +1,28 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
 # Run package installation and all topic installers.
 
-set -e
-
-# Ensure sudo for package installation
-if [[ $UID != 0 ]]; then
-  echo "Package installation requires sudo:"
-  echo "sudo $0 $*"
-  exit 1
+if [ -z ${DOTFILES+x} ];then
+  export DOTFILES=~/dot.minatrix
 fi
+
+source $DOTFILES/script/helpers
+
+ensure-sudo
 
 cd "$(dirname $0)"/..
 
-echo ''
-
-source script/helpers.sh
-
 # load default packages
-source packages.sh
+source packages.bash
 
 # begin install
-echo "Installing core packages: [${packagelist[@]}]"
+for ppa in "${ppalist[@]}"; do
+  inf "Adding custom PPA: ppa:$ppa"
+  add-apt-repository "ppa:$ppa" -y
+done
+apt update
+
+inf "Installing core packages"
 apt install ${packagelist[@]}
 
 # find the installers and run them iteratively

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # bootstrap installs things.
-source script/helpers.sh
+source $DOTFILES/script/helpers
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
@@ -65,7 +65,7 @@ link_file () {
     if [ "$backup" == "true" ]
     then
       mv "$dst" "${dst}.backup"
-      success "moved $dst to ${dst}.backup"
+      inf "moved $dst to ${dst}.backup"
     fi
 
     if [ "$skip" == "true" ]
@@ -82,7 +82,7 @@ link_file () {
 }
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  inf 'installing dotfiles'
 
   local overwrite_all=false backup_all=false skip_all=false
 
@@ -95,5 +95,4 @@ install_dotfiles () {
 
 install_dotfiles
 
-echo ''
-echo '  Bootstrap Complete!'
+success 'Bootstrap Complete!'

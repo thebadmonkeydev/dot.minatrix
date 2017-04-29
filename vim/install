@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# setup vim after install
+source script/helpers
+
+inf 'setup vim'
+
+if [ -z ${DOTUPDATE+x} ];then
+  git clone --recursive https://github.com/carlhuda/janus.git "${HOME}/.vim" \
+    || die "Could not clone janus into ${HOME}/.vim"
+
+  pushd "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
+  rake update folders  || die "Rake failed."
+  popd
+else
+  pushd "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
+  rake update || die "Rake failed."
+  popd
+fi
+
