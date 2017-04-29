@@ -1,0 +1,4 @@
+packagelist=(
+  postgresql
+  vim
+)
