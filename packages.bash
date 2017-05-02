@@ -1,4 +1,5 @@
 packagelist=(
+  whois
   xclip
   postgresql
   vim
