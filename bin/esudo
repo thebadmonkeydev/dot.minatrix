@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# esudo
+#
+# `esudo command` executes the given command using
+# sudo with the current value of PATH injected.
+# Helpful for running scripts in ~/dot.minatrix as root
+
+sudo -E env "PATH=$PATH" "$@"
