@@ -12,21 +12,28 @@ ensure-sudo
 
 cd "$(dirname $0)"/..
 
-# load default packages
-source packages.bash
+export DOTUPDATE=1
+if [ -z ${DOTUPDATE+x} ];then
+  # load default packages
+  source packages.bash
 
-# begin install
-for ppa in "${ppalist[@]}"; do
-  inf "Adding custom PPA: ppa:$ppa"
-  add-apt-repository "ppa:$ppa" -y
-done
-apt update
+  # begin install
+  for ppa in "${ppalist[@]}"; do
+    inf "Adding custom PPA: ppa:$ppa"
+    add-apt-repository "ppa:$ppa" -y
+  done
+  apt update
 
-inf "Installing core packages"
-apt install ${packagelist[@]}
+  inf "Installing core packages"
+  apt install ${packagelist[@]}
+fi
 
 # find the installers and run them iteratively
 shopt -s extglob
 for file in ./!(script)/install; do
   [ -f "$file" ] && [ -x "$file" ] && $file
 done
+
+if [ -z ${DOTUPDATE+x} ];then
+  $DOTFILES/script/bootstrap
+fi
