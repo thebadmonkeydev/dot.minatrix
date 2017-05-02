@@ -1,4 +1,5 @@
 packagelist=(
+  xclip
   postgresql
   vim
   rvm

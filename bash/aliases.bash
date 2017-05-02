@@ -24,5 +24,8 @@ alias scripts='cd ~/scripts'
 # shortcut for opening a file in default app from commandline
 alias open='xdg-open'
 
-## Move to bash/aliases.bash
+# easy clipboard copy on commandline
+alias copy='xclip -sel clip'
+
+# outputs  the netstat of a process using a specified port
 alias procport='netstat -tulpn | grep'
