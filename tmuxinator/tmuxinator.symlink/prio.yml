@@ -1,0 +1,34 @@
+# ~/.tmuxinator/prio.yml
+
+name: prio
+root: ~/sites/prio
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window: rvm use 2.3.1
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: bash
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+attach: true
+
+windows:
+  - bash:
+    - git status
+  - vim:
+    - vim
+  - console:
+    - bundle exec rails c
+  - server:
+    - bundle exec rails s -p 3000
+  - sidekiq:
+    - bundle exec sidekiq -q default
+  - guard:
+    - export GUARD=true
+    - bundle exec guard
+  - ngrok:
+    - cd ~/scripts
+    - ./ngrok http 4567
+  - test-repo:
+    - cd ~/sites/blog
+    - git status

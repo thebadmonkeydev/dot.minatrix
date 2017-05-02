@@ -1,0 +1,31 @@
+# ~/.tmuxinator/monsieur-platform.yml
+
+name: monsieur-platform
+root: ~/
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window: rvm use 2.2.2
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: bouncer
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+attach: true
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t monsieur-platform
+
+windows:
+  - bouncer:
+    - cd ~/monsieur/bouncer
+    - bundle install
+    - foreman s
+  - barback:
+    - cd ~/monsieur/barback
+    - bundle install
+    - foreman s
+  - cashier:
+    - cd ~/monsieur/cashier
+    - bundle install
+    - foreman s
+

@@ -1,0 +1,29 @@
+# ~/.tmuxinator/api.yml
+
+name: commitflow
+root: ~/sites/commitflow
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window: rvm use 2.3.1
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: bash
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+attach: true
+
+windows:
+  - bash:
+    - git status
+  - vim:
+    - vim
+  - server:
+    - export PORT=5000
+    - bundle exec puma -C config/puma.rb
+  - sidekiq:
+    - bundle exec sidekiq -C config/sidekiq.yml
+  - ngrok:
+    - export PORT=5000
+    - ngrok http $PORT
+
+
