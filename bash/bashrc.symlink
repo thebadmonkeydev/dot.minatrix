@@ -54,5 +54,6 @@ do
   source $file
 done
 
-# Add dot.minatrix/bin to path
+# Add bin to paths
+export PATH="$PATH:./bin"
 export PATH="$PATH:~/dot.minatrix/bin"
