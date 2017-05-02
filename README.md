@@ -5,7 +5,7 @@ This is my dotfile project based largely on [Zach Holman](https://github.com/hol
 now-famous [dotfiles](https://github.com/holman/dotfiles) project rebuilt to cover
 my needs on an Ubuntu/Bash/Vim based environment.
 
-I agree with his philosophy on this topic, if you're interested in that kind
+I agree with his philosophy on forking dotfiles, if you're interested in that kind
 of thing you should check out his [article on the topic](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## Topical
@@ -84,5 +84,6 @@ and I'd love to get it fixed for you!
 I originally forked [Zach Holman](https://github.com/holman)'s impressive
 [dotfiles](https://github.com/holman/dotfiles) project and began working on
 migrating it to my needs in Bash and Linux. However, it became clear that the
-amount of changes necessary really warranted a new repository. However, I did
-start with his project and there's still some of his scripting in there. Thanks!
+amount of changes necessary really warranted a new repository inspired by his original.
+However, I did start with his project and there's still some of his scripting in there.
+Thanks!
