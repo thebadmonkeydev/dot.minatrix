@@ -56,4 +56,4 @@ done
 
 # Add bin to paths
 export PATH="$PATH:./bin"
-export PATH="$PATH:~/dot.minatrix/bin"
+export PATH="$PATH:$HOME/dot.minatrix/bin"
