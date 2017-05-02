@@ -26,6 +26,7 @@ alias open='xdg-open'
 
 # easy clipboard copy on commandline
 alias copy='xclip -sel clip'
+alias pbcopy='xclip -sel clip'
 
 # outputs  the netstat of a process using a specified port
 alias procport='netstat -tulpn | grep'
