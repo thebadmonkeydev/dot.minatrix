@@ -1,14 +1,14 @@
-# vim: ft=sh
+#!/bin/bash
 #
 # ~/.bashrc: executed by bash(1) for non-login shells.
+
+set -a
 
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
-
-set -a
 
 # shortcut to dot.minatrix path
 if [ -z ${DOTFILES+x} ];then
@@ -43,19 +43,4 @@ xterm*|rxvt*)
     ;;
 esac
 
-# Stash your environment variables in ~/.localrc. This means they'll stay out
-# of your main dotfiles repository (which may be public, like this one), but
-# you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
-
-for file in $DOTFILES/**/*.bash
-do
-  source $file
-done
-
-# Add bin to paths
-export PATH="$PATH:./bin:$HOME/.bin"
-export PATH="$PATH:$HOME/dot.minatrix/bin"
+source ~/.bashrc.common

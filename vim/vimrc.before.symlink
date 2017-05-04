@@ -13,3 +13,6 @@ call janus#disable_plugin('vim-multi-cursors')
 " or expected that vim would be the place to get it from
 set nobackup
 set noswapfile
+
+" let $NO_COMPLETION = 1
+let $BASH_ENV = '~/.bashrc.minimal'
