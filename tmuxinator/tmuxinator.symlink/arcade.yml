@@ -13,8 +13,8 @@ startup_window: bash
 attach: true
 
 windows:
-  - bash:
-    - git status
   - vim:
     - vim
+  - bash:
+    - git status
 
