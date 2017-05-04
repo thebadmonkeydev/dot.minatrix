@@ -44,6 +44,10 @@ nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>gco :Gcommit<cr>
 nnoremap <leader>gpu :Dispatch! git-promote<cr>
 nnoremap <leader>gpr :Dispatch git-pr<cr>
+nnoremap <leader>gdi :Git diff<cr>
+nmap <leader>gl :! log<cr>
+nmap <leader>gdi :! git diff --color<cr>
+nmap <leader>gdl :! dlog<cr>
 
 set foldmethod=syntax
 set foldnestmax=5

@@ -7,7 +7,6 @@ alias dlog='log master..HEAD'
 # Removes all branches that aren't master or that aren't fully merged
 alias clb='git branch | grep -ve " master$" | xargs git branch -d'
 
-# Remove `+` and `-` from start of diff lines; just rely upon color.
 alias diff='git diff --color'
 alias staged='diff --cached'
 
