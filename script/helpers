@@ -1,31 +1,31 @@
 #!/bin/bash
 
 inf () {
-  printf "\r\n  [ \033[00;34m..\033[0m ] $1\n"
+  printf "\r\n  [$Blue .. $Color_Off] $1\n"
 }
 
 user () {
-  printf "\r\n  [ \033[0;33m??\033[0m ] $1\n"
+  printf "\r\n  [$Yellow ?? $Color_Off] $1\n"
 }
 
 success () {
-  printf "\r\n\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  printf "\r\n\033[2K  [$Green OK $Color_Off] $1\n"
 }
 
 tada () {
-  printf "\r\n\n\033[2K  [ \033[00;32m\(^-^)/\033[0m ] $1\n\n"
+  printf "\r\n\n\033[2K  [$IGreen \(^-^)/ $Color_Off] $1\n\n"
 }
 
 fuck () {
-  printf "\r\n\033[2K  [\033[0;31m {>_<} \033[0m] $1\n"
+  printf "\r\n\n\033[2K  [$IRed /{>_<}\ $Color_Off] $1\n\n"
 }
 
 fail () {
-  printf "\r\n\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  printf "\r\n\033[2K  [$Red FAIL $Color_Off] $1\n"
 }
 
 die () {
-  fail "${@}"
+  fuck "${@}"
   exit 1
 }
 
@@ -47,4 +47,27 @@ pushq () {
 
 popq () {
   popd $1 >/dev/null
+}
+
+function colors {
+  for i in {0,3,4,9,10};do
+    for j in {0..9};do
+      C="\x1b[${i}${j}m";
+      echo -en "$C";
+      echo -n  "$C";
+      [ $i -eq 10 ] && echo -en "\x1b[0m ";
+      [ $i -ne 10 ] && echo -en "\x1b[0m  ";
+    done
+    echo
+  done
+  for i in {0..255};do
+    [ $((i % 10)) -eq 0 ] && echo
+    C="\x1b[38;5;${i}m";
+    echo -en "$C";
+    echo -n  "$C";
+    [ $i -lt 10 ] && echo -en "\x1b[0m   " && continue
+    [ $i -lt 100 ] && echo -en "\x1b[0m  " && continue
+    echo -en "\x1b[0m "
+  done
+  echo
 }
