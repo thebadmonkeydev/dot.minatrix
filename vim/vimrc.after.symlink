@@ -42,6 +42,8 @@ nnoremap <leader>mig :Rake db:migrate db:test:prepare<cr>
 " Git interactions
 nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>gco :Gcommit<cr>
+nnoremap <leader>gpu :! git-promote<cr>
+nnoremap <leader>gpr :! git-pr<cr>
 
 set foldmethod=syntax
 set foldnestmax=5
