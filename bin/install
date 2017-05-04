@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# setup executable files
+
+if [ -z ${DOTUPDATE+x} ];then
+  inf "Setting up executables"
+
+  safe_dir='/usr/local/bin'
+  cp $DOTFILES/bin/udot $safe_dir
+fi
