@@ -23,17 +23,17 @@ source packages.bash
 if [ -z ${DOTUPDATE+x} ];then
   for ppa in "${ppalist[@]}"; do
     inf "Adding custom package source: $ppa"
-    add-apt-repository "$ppa" -y
+    add-apt-repository "$ppa" -y >/dev/null
     success "Added source:$ppa"
   done
 fi
 
 inf 'updating package info'
-apt update
+apt-get update >/dev/null
 success 'packages updated'
 
 inf 'Installing core packages'
-apt install ${packagelist[@]}
+apt-get install ${packagelist[@]} >/dev/null
 success 'installed core packages'
 
 # find the installers and run them iteratively

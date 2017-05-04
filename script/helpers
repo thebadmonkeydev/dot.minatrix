@@ -74,3 +74,20 @@ function colors {
   done
   echo
 }
+
+function amessage {
+  title="
+ _______
+/
+|  $1
+|"
+
+  if [ "$AFTERINSTALL" = '' ];then
+    # no running collection file, just echo
+    echo "$title"
+    echo "$2"
+  else
+    echo "$title" >> "$AFTERINSTALL"
+    echo "$2" >> "$AFTERINSTALL"
+  fi
+}

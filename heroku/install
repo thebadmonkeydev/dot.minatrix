@@ -2,8 +2,12 @@
 #
 # Installs the heroku toolbelt
 # Add after install message to login
-cat > "$AFTERINSTALL" <<EOF
+source script/helpers
+
+set -e
+
+amessage Heroku "
   * start using the heroku-toolbelt by logging in with:
 
       \`heroku login\`
-EOF
+"
