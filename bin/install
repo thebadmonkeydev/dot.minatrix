@@ -2,9 +2,9 @@
 #
 # setup executable files
 
-if [ -z ${DOTUPDATE+x} ];then
-  inf "Setting up executables"
+set -e
 
+if [ -z ${DOTUPDATE+x} ];then
   safe_dir='/usr/local/bin'
   cp $DOTFILES/bin/udot $safe_dir
 fi

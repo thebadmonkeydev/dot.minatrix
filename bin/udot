@@ -6,6 +6,7 @@
 # to make sure you're on the latest and greatest.
 
 set -a
+set -e
 
 if [ -z ${DOTFILES+x} ];then
   export DOTFILES=~/dot.minatrix
@@ -16,12 +17,14 @@ source $DOTFILES/script/helpers
 ensure-sudo
 
 # Update package lists
-inf "Updating package info"
+inf "updating package info"
 apt update
+success 'packages updated'
 
 # Upgrade installed packages
-inf "Upgrading installed packages"
+inf "upgrading installed packages"
 apt upgrade
+success 'installed packages'
 
 # Re-run dot.minatrix install with update flag set
 export DOTUPDATE=1

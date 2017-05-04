@@ -2,6 +2,8 @@
 #
 # Run package installation and all topic installers.
 
+set -e
+
 if [ -z ${DOTFILES+x} ];then
   export DOTFILES=~/dot.minatrix
 fi
@@ -21,37 +23,57 @@ source packages.bash
 if [ -z ${DOTUPDATE+x} ];then
   for ppa in "${ppalist[@]}"; do
     inf "Adding custom PPA: ppa:$ppa"
-    add-apt-repository "ppa:$ppa" -y >/dev/null
+    add-apt-repository "ppa:$ppa" -y
+    success "Added ppa:$ppa"
   done
 fi
 
+inf 'updating package info'
 apt update
+success 'packages updated'
 
-inf "Installing core packages"
+inf 'Installing core packages'
 apt install ${packagelist[@]}
+success 'installed core packages'
 
 # find the installers and run them iteratively
 export AFTERINSTALL='./AFTER_INSTALL_MESSAGE'
 
-afterheader="
-****************************
-** After Install Messages **
-****************************
-"
-
 for file in ./!(script)/install; do
-  [ -f "$file" ] && [ -x "$file" ] && $file
+  if [ -f "$file" ] && [ -x "$file" ];then
+    inf "installing $file"
+    $file
+
+    if [ $? = 0 ];then
+      success "installed $file"
+    else
+      fail "Error installing $file"
+    fi
+  fi
 done
 
 # Don't bootstrap when updating
 if [ -z ${DOTUPDATE+x} ];then
+  inf 'bootstrapping dot files'
   $DOTFILES/script/bootstrap
+
+  if [ $? = 0 ];then
+    success 'bootstrap complete'
+  else
+    fail 'Error bootstrapping'
+  fi
 fi
 
 # source the new bash configuration
 source ~/.bashrc
 
-echo "\n${afterheader}$(<$AFTERINSTALL)"
+if [ -z ${DOTUPDATE+x} ];then
+  tada "dot.minatrix installed successfully!"
+else
+  tada "dot.minatrix updated successfully!"
+fi
+echo ''
+echo "$(<$AFTERINSTALL)"
 
 rm $AFTERINSTALL
 unset AFTERINSTALL

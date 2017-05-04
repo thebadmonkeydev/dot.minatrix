@@ -3,36 +3,29 @@
 # setup global git settings after install
 source script/helpers
 
-inf 'setup git'
-# ... nothing to do here, git packages are installed through packages.bash
+set -e
 
 # Add after install message to set git author config
 cat > "$AFTERINSTALL" <<EOF
-From Git
+  * Be sure your git author config is correct in ~/.gitconfig.local:
 
-  Be sure to setup your git author config in ~/.gitconfig.local:
-
-    [core]
-      name = YOUR_NAME
-      email = YOUR_EMAIL
-
-End Git
+      [core]
+        name = YOUR_NAME
+        email = YOUR_EMAIL
 EOF
 
-inf 'installing hub'
-
 # Clone the newest hub
-git clone https://github.com/github/hub.git -q
+git clone https://github.com/github/hub.git
 
-# In hub.git directory
+# In hub directory
 pushq ./hub
 
-# build hub binary
-./script/build >/dev/null
+  # build hub binary
+  ./script/build
 
-# move built binary to $DOTFILES/bin/hub
-yes | cp -rf ./bin/hub $DOTFILES/bin/hub
-chmod +x $DOTFILES/bin/hub
+  # move built binary to $DOTFILES/bin/hub
+  yes | cp -rf ./bin/hub $DOTFILES/bin/hub
+  chmod +x $DOTFILES/bin/hub
 
 # reset dir
 popq
