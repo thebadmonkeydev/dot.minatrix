@@ -48,3 +48,26 @@ pushq () {
 popq () {
   popd $1 >/dev/null
 }
+
+function colors {
+  for i in {0,3,4,9,10};do
+    for j in {0..9};do
+      C="\x1b[${i}${j}m";
+      echo -en "$C";
+      echo -n  "$C";
+      [ $i -eq 10 ] && echo -en "\x1b[0m ";
+      [ $i -ne 10 ] && echo -en "\x1b[0m  ";
+    done
+    echo
+  done
+  for i in {0..255};do
+    [ $((i % 10)) -eq 0 ] && echo
+    C="\x1b[38;5;${i}m";
+    echo -en "$C";
+    echo -n  "$C";
+    [ $i -lt 10 ] && echo -en "\x1b[0m   " && continue
+    [ $i -lt 100 ] && echo -en "\x1b[0m  " && continue
+    echo -en "\x1b[0m "
+  done
+  echo
+}
