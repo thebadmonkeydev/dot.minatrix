@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# refresh
+#
+# `refresh` automates the process of sourcing bash configuration
+# to update the configuration for the current shell session
+
+source $HOME/.bashrc

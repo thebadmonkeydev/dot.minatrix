@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# git-co-pr
+#
+# `git-co-pr` retrieves a pull request by pr ID
+
+set -e
+
+git fetch origin "pull/$1/head:pr/$1"
+git checkout "pr/$1"
+git diff master
