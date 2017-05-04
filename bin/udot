@@ -13,9 +13,6 @@ source $DOTFILES/script/helpers
 
 ensure-sudo
 
-# fork sudo heartbeat to prevent sudo timeout while installing
-#while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
-
 # Update package lists
 inf "Updating package info"
 apt update
