@@ -1,11 +1,14 @@
 #!/bin/bash
+#
+# A collection of bash functions for fun and profit
+source $DOTFILES/bash/colors.bash
 
 inf () {
-  printf "\r\n  [$Blue .. $Color_Off] $1\n"
+  printf "\r\n\033[2K  [$Blue .. $Color_Off] $1\n"
 }
 
 user () {
-  printf "\r\n  [$Yellow ?? $Color_Off] $1\n"
+  printf "\r\n\033[2K  [$Yellow ?? $Color_Off] $1\n"
 }
 
 success () {
