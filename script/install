@@ -12,6 +12,8 @@ ensure-sudo
 
 cd "$(dirname $0)"/..
 
+shopt -s extglob
+
 export DOTUPDATE=1
 if [ -z ${DOTUPDATE+x} ];then
   # load default packages
@@ -29,7 +31,14 @@ if [ -z ${DOTUPDATE+x} ];then
 fi
 
 # find the installers and run them iteratively
-shopt -s extglob
+export AFTERINSTALL='./AFTER_INSTALL_MESSAGE'
+
+afterheader="
+****************************
+** After Install Messages **
+****************************
+"
+
 for file in ./!(script)/install; do
   [ -f "$file" ] && [ -x "$file" ] && $file
 done
@@ -37,3 +46,8 @@ done
 if [ -z ${DOTUPDATE+x} ];then
   $DOTFILES/script/bootstrap
 fi
+
+echo "${afterheader}$(<$AFTERINSTALL)"
+
+rm $AFTERINSTALL
+unset AFTERINSTALL

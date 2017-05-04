@@ -3,18 +3,36 @@
 # setup global git settings after install
 source script/helpers
 
-if [ -z ${DOTUPDATE+x} ];then
-  if ! [ -f git/gitconfig.local.symlink ]
-  then
-    inf 'setup gitconfig'
+inf 'setup git'
+# TODO: install hub here
+# process is:
+#   1. clone the repo
+#
+#      `git clone https://github.com/github/hub.git`
+#
+#   2. in new repo directory run
+#
+#      `./script/build`
+#
+#   3. move the new binary to a PATH location
+#
+#      `mv ./bin/hub ~/.bin`
+#
+#   4. delete the cloned folder hub.git
+#
+# The process is the same for updating, we'll just force the
+# move to overwrite previously built hub binary
 
-    user ' - What is your github author name?'
-    read -e git_authorname </dev/tty
-    user ' - What is your github author email?'
-    read -e git_authoremail </dev/tty
+# Add after install message to set git author config
+cat > $AFTERINSTALL << EOF
+From Git
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
+  Be sure to setup your git author config in ~/.gitconfig.local:
 
-    success 'gitconfig'
-  fi
-fi
+    [core]
+      name = YOUR_NAME
+      email = YOUR_EMAIL
+
+End Git
+EOF
+

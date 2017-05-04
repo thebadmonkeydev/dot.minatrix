@@ -9,12 +9,12 @@ if [ -z ${DOTUPDATE+x} ];then
   git clone --recursive https://github.com/carlhuda/janus.git "${HOME}/.vim" \
     || die "Could not clone janus into ${HOME}/.vim"
 
-  pushd "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
-  rake update folders  || die "Rake failed."
-  popd
+  pushd "${HOME}/.vim" >/dev/null || die "Could not go into the ${HOME}/.vim"
+  rake update folders >/dev/null || die "Rake failed."
+  popd >/dev/null
 else
-  pushd "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
-  rake update || die "Rake failed."
-  popd
+  pushd "${HOME}/.vim" >/dev/null || die "Could not go into the ${HOME}/.vim"
+  rake update >/dev/null || die "Rake failed."
+  popd >/dev/null
 fi
 
