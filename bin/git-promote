@@ -7,9 +7,10 @@
 # http://hoth.entp.com/2008/11/10/improving-my-git-workflow
 source $DOTFILES/script/helpers
 
+set -e
 
 git fetch
 
+
 curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
-remote_branch=$(git branch -r | grep "origin/${curr_branch}")
-[ -z "${remote_branch}" ] && ( git push origin "${curr_branch}" -u )
+git push --set-upstream origin "${curr_branch}"
