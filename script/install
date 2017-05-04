@@ -69,11 +69,12 @@ source ~/.bashrc
 
 if [ -z ${DOTUPDATE+x} ];then
   tada "dot.minatrix installed successfully!"
+
+  echo ''
+  echo "$(<$AFTERINSTALL)"
 else
   tada "dot.minatrix updated successfully!"
 fi
-echo ''
-echo "$(<$AFTERINSTALL)"
 
 rm $AFTERINSTALL
 unset AFTERINSTALL
