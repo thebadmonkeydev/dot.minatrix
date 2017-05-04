@@ -6,8 +6,9 @@ packagelist=(
   vim
   rvm
   golang
+  heroku-toolbelt
 )
 
 ppalist=(
-  rael-gc/rvm
+  ppa:rael-gc/rvm
 )

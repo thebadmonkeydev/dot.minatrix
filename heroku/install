@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Installs the heroku toolbelt
+# Add after install message to login
+cat > "$AFTERINSTALL" <<EOF
+  * start using the heroku-toolbelt by logging in with:
+
+      \`heroku login\`
+EOF

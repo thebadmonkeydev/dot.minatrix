@@ -22,9 +22,9 @@ source packages.bash
 # Don't install ppas when updating
 if [ -z ${DOTUPDATE+x} ];then
   for ppa in "${ppalist[@]}"; do
-    inf "Adding custom PPA: ppa:$ppa"
-    add-apt-repository "ppa:$ppa" -y
-    success "Added ppa:$ppa"
+    inf "Adding custom package source: $ppa"
+    add-apt-repository "$ppa" -y
+    success "Added source:$ppa"
   done
 fi
 
