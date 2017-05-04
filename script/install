@@ -14,21 +14,21 @@ cd "$(dirname $0)"/..
 
 shopt -s extglob
 
-export DOTUPDATE=1
-if [ -z ${DOTUPDATE+x} ];then
-  # load default packages
-  source packages.bash
+# load default packages
+source packages.bash
 
-  # begin install
+# Don't install ppas when updating
+if [ -z ${DOTUPDATE+x} ];then
   for ppa in "${ppalist[@]}"; do
     inf "Adding custom PPA: ppa:$ppa"
-    add-apt-repository "ppa:$ppa" -y
+    add-apt-repository "ppa:$ppa" -y >/dev/null
   done
-  apt update
-
-  inf "Installing core packages"
-  apt install ${packagelist[@]}
 fi
+
+apt update
+
+inf "Installing core packages"
+apt install ${packagelist[@]}
 
 # find the installers and run them iteratively
 export AFTERINSTALL='./AFTER_INSTALL_MESSAGE'
@@ -43,11 +43,12 @@ for file in ./!(script)/install; do
   [ -f "$file" ] && [ -x "$file" ] && $file
 done
 
+# Don't bootstrap when updating
 if [ -z ${DOTUPDATE+x} ];then
   $DOTFILES/script/bootstrap
 fi
 
-echo "${afterheader}$(<$AFTERINSTALL)"
+echo "\n${afterheader}$(<$AFTERINSTALL)"
 
 rm $AFTERINSTALL
 unset AFTERINSTALL

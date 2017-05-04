@@ -1,3 +1,4 @@
+alias git='hub'
 alias st='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias branch='git checkout -b'
 alias staged='git diff --cached'

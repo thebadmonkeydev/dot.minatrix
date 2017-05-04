@@ -5,6 +5,8 @@
 # `udot` handles installation, updates, things like that. Run it periodically
 # to make sure you're on the latest and greatest.
 
+set -a
+
 if [ -z ${DOTFILES+x} ];then
   export DOTFILES=~/dot.minatrix
 fi

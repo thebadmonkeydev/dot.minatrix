@@ -4,27 +4,10 @@
 source script/helpers
 
 inf 'setup git'
-# TODO: install hub here
-# process is:
-#   1. clone the repo
-#
-#      `git clone https://github.com/github/hub.git`
-#
-#   2. in new repo directory run
-#
-#      `./script/build`
-#
-#   3. move the new binary to a PATH location
-#
-#      `mv ./bin/hub ~/.bin`
-#
-#   4. delete the cloned folder hub.git
-#
-# The process is the same for updating, we'll just force the
-# move to overwrite previously built hub binary
+# ... nothing to do here, git packages are installed through packages.bash
 
 # Add after install message to set git author config
-cat > $AFTERINSTALL << EOF
+cat > "$AFTERINSTALL" <<EOF
 From Git
 
   Be sure to setup your git author config in ~/.gitconfig.local:
@@ -35,4 +18,24 @@ From Git
 
 End Git
 EOF
+
+inf 'installing hub'
+
+# Clone the newest hub
+git clone https://github.com/github/hub.git -q
+
+# In hub.git directory
+pushq ./hub
+
+# build hub binary
+./script/build >/dev/null
+
+# move built binary to $DOTFILES/bin/hub
+yes | cp -rf ./bin/hub $DOTFILES/bin/hub
+chmod +x $DOTFILES/bin/hub
+
+# reset dir
+popq
+
+rm -rf ./hub
 

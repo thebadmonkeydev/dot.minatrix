@@ -6,15 +6,16 @@ source script/helpers
 inf 'setup vim'
 
 if [ -z ${DOTUPDATE+x} ];then
-  git clone --recursive https://github.com/carlhuda/janus.git "${HOME}/.vim" \
+  rm -rf "${HOME}/.vim"
+  git clone --recursive https://github.com/carlhuda/janus.git "${HOME}/.vim" -q \
     || die "Could not clone janus into ${HOME}/.vim"
 
-  pushd "${HOME}/.vim" >/dev/null || die "Could not go into the ${HOME}/.vim"
-  rake update folders >/dev/null || die "Rake failed."
-  popd >/dev/null
+  pushq "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
+  rake update folders >/dev/nulls || die "Rake failed."
+  popq
 else
-  pushd "${HOME}/.vim" >/dev/null || die "Could not go into the ${HOME}/.vim"
-  rake update >/dev/null || die "Rake failed."
-  popd >/dev/null
+  pushq "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
+  rake update >/dev/null|| die "Rake failed."
+  popq
 fi
 
