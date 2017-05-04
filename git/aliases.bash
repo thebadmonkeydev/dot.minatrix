@@ -8,4 +8,4 @@ alias dlog='log master..HEAD'
 alias clb='git branch | grep -ve " master$" | xargs git branch -d'
 
 # Remove `+` and `-` from start of diff lines; just rely upon color.
-alias diff='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r'
+alias diff='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/"'
