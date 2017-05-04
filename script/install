@@ -48,6 +48,9 @@ if [ -z ${DOTUPDATE+x} ];then
   $DOTFILES/script/bootstrap
 fi
 
+# source the new bash configuration
+source ~/.bashrc
+
 echo "\n${afterheader}$(<$AFTERINSTALL)"
 
 rm $AFTERINSTALL
