@@ -32,3 +32,11 @@ ensure-sudo () {
   fi
   sudo-heartbeat
 }
+
+pushq () {
+  pushd $1 >/dev/null
+}
+
+popq () {
+  popd $1 >/dev/null
+}

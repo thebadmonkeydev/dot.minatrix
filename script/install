@@ -12,28 +12,43 @@ ensure-sudo
 
 cd "$(dirname $0)"/..
 
-export DOTUPDATE=1
-if [ -z ${DOTUPDATE+x} ];then
-  # load default packages
-  source packages.bash
+shopt -s extglob
 
-  # begin install
+# load default packages
+source packages.bash
+
+# Don't install ppas when updating
+if [ -z ${DOTUPDATE+x} ];then
   for ppa in "${ppalist[@]}"; do
     inf "Adding custom PPA: ppa:$ppa"
-    add-apt-repository "ppa:$ppa" -y
+    add-apt-repository "ppa:$ppa" -y >/dev/null
   done
-  apt update
-
-  inf "Installing core packages"
-  apt install ${packagelist[@]}
 fi
 
+apt update
+
+inf "Installing core packages"
+apt install ${packagelist[@]}
+
 # find the installers and run them iteratively
-shopt -s extglob
+export AFTERINSTALL='./AFTER_INSTALL_MESSAGE'
+
+afterheader="
+****************************
+** After Install Messages **
+****************************
+"
+
 for file in ./!(script)/install; do
   [ -f "$file" ] && [ -x "$file" ] && $file
 done
 
+# Don't bootstrap when updating
 if [ -z ${DOTUPDATE+x} ];then
   $DOTFILES/script/bootstrap
 fi
+
+echo "\n${afterheader}$(<$AFTERINSTALL)"
+
+rm $AFTERINSTALL
+unset AFTERINSTALL
