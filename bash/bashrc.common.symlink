@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Common configuration used in both interactive and non-interactive shells
+
+# Stash your environment variables in ~/.localrc. This means they'll stay out
+# of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+for file in $DOTFILES/**/*.bash
+do
+  source $file
+done
+
+# Add bin to paths
+export PATH="$PATH:./bin:$HOME/.bin"
+export PATH="$PATH:$HOME/dot.minatrix/bin"
+
+# set non-interactive bash environment
+export BASH_ENV="~/.bashrc.minimal"
+
