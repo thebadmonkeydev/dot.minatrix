@@ -8,6 +8,8 @@ case $- in
       *) return;;
 esac
 
+set -a
+
 # shortcut to dot.minatrix path
 if [ -z ${DOTFILES+x} ];then
   export DOTFILES=~/dot.minatrix
@@ -55,5 +57,5 @@ do
 done
 
 # Add bin to paths
-export PATH="$PATH:./bin"
+export PATH="$PATH:./bin:$HOME/.bin"
 export PATH="$PATH:$HOME/dot.minatrix/bin"
