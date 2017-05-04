@@ -1,6 +1,8 @@
 # expand aliases for use in non-interactive shell commands
 shopt -s expand_aliases
 
+alias reload='source ~/.bashrc'
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
