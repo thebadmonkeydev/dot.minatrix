@@ -15,13 +15,13 @@ cat > "$AFTERINSTALL" <<EOF
 EOF
 
 # Clone the newest hub
-git clone https://github.com/github/hub.git
+git clone https://github.com/github/hub.git -q
 
 # In hub directory
 pushq ./hub
 
   # build hub binary
-  ./script/build
+  ./script/build >/dev/null
 
   # move built binary to $DOTFILES/bin/hub
   yes | cp -rf ./bin/hub $DOTFILES/bin/hub

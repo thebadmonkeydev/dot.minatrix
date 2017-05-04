@@ -7,15 +7,15 @@ set -e
 
 if [ -z ${DOTUPDATE+x} ];then
   rm -rf "${HOME}/.vim"
-  git clone --recursive https://github.com/carlhuda/janus.git "${HOME}/.vim" \
+  git clone --recursive https://github.com/carlhuda/janus.git "${HOME}/.vim" -q \
     || die "Could not clone janus into ${HOME}/.vim"
 
   pushq "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
-  rake update folders || die "Rake failed."
+  rake update folders >/dev/null || die "Rake failed."
   popq
 else
   pushq "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
-  rake update || die "Rake failed."
+  rake update >/dev/null || die "Rake failed."
   popq
 fi
 
