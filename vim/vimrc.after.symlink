@@ -49,6 +49,9 @@ nmap <leader>gl :! log<cr>
 nmap <leader>gdi :! git diff --color<cr>
 nmap <leader>gdl :! dlog<cr>
 
+" Projectionist stuff
+nnoremap <leader>sw :A<cr>
+
 set foldmethod=syntax
 set foldnestmax=5
 set foldminlines=2
