@@ -5,6 +5,7 @@
 #
 # Thanks to ENTP:
 # http://hoth.entp.com/2008/11/10/improving-my-git-workflow
+source $DOTFILES/script/helpers
 
 set -e
 
