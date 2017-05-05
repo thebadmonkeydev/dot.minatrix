@@ -29,5 +29,5 @@ success 'installed packages'
 # Re-run dot.minatrix install with update flag set
 export DOTUPDATE=1
   inf "Running dot.minatrix install ($DOTFILES)/script/install"
-  $DOTFILES/script/install
+  $DOTFILES/script/install "$@"
 unset DOTUPDATE

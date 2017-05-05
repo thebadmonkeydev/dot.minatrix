@@ -7,6 +7,7 @@ export VIM_DIR="$HOME/.vim"
 export JANUS_DIR="$VIM_DIR/janus"
 
 function janus_dirs {
+  ensure_dir "$JANUS_DIR"
   ensure_dir "$VIM_DIR/_backup"
   ensure_dir "$VIM_DIR/_temp"
 }
@@ -22,17 +23,12 @@ function janus_update {
   popq
 }
 
-rm -rf "$VIM_DIR"
-ensure_dir "$VIM_DIR"
-
 if [ -z ${DOTUPDATE+x} ];then
-  eval "
-    git clone --recursive --quiet https://github.com/carlhuda/janus.git ${VIM_DIR}/ ${SILENCE_ALL}
-  "
-
-  janus_update
+  rm -rf "$JANUS_DIR"
   janus_dirs
-else
-  janus_update
+
+  eval git clone --recursive https://github.com/carlhuda/janus.git $JANUS_DIR/ $SILENCE_ALL
 fi
+
+janus_update
 

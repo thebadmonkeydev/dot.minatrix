@@ -6,12 +6,6 @@ source $DOTFILES/script/helpers
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
-print_success () {
-  if ! [ "$QUIET" = "1" ];then
-    success "$1"
-  fi
-}
-
 link_file () {
   local src=$1 dst=$2
 
@@ -65,7 +59,7 @@ link_file () {
     if [ "$overwrite" == "true" ]
     then
       rm -rf "$dst"
-      print_success "removed $dst"
+      success "removed $dst"
     fi
 
     if [ "$backup" == "true" ]
@@ -76,14 +70,14 @@ link_file () {
 
     if [ "$skip" == "true" ]
     then
-      print_success "skipped $src"
+      success "skipped $src"
     fi
   fi
 
   if [ "$skip" != "true" ]  # "false" or empty
   then
     ln -s "$1" "$2"
-    print_success "linked $1 to $2"
+    success "linked $1 to $2"
   fi
 }
 

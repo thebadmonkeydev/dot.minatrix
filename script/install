@@ -5,8 +5,8 @@
 set -e
 
 # handle options
-SHORT=vq
-LONG=verbose,quiet
+SHORT=vqt
+LONG=verbose,quiet,topic
 
 # -temporarily store output to be able to check for errors
 # -activate advanced mode getopt quoting e.g. via “--options”
@@ -27,8 +27,12 @@ while true; do
       export VERBOSE=1
       shift
       ;;
-    -q|quiet)
+    -q|--quiet)
       export QUIET=1
+      shift
+      ;;
+    -t|--topic)
+      export TOPIC_NAME="$3"
       shift
       ;;
     --)
@@ -44,8 +48,10 @@ done
 
 # verbose trumps quiet
 if [ "$VERBOSE" = "1" ];then
-  (>&2 echo 'WARN: --verbose(-v) overrides --quiet(-q)')
-  unset QUIET
+  if [ "$QUIET" = "1" ];then
+    (>&2 echo 'WARN: --verbose(-v) overrides --quiet(-q)')
+    unset QUIET
+  fi
 fi
 
 if [ -z ${DOTFILES+x} ];then
@@ -70,28 +76,36 @@ if [ -z ${DOTUPDATE+x} ];then
     eval add-apt-repository $ppa -y $SILENCE_ALL
     success "Added source:$ppa"
   done
+
+  # these were already performed by the update script
+  inf 'updating package info'
+  eval apt-get update $SILENCE_ALL
+  success 'packages updated'
+
+  inf 'Installing core packages'
+  eval apt install ${packagelist[@]} $SILENCE_ALL
+  success 'installed core packages'
 fi
-
-inf 'updating package info'
-eval apt-get update $SILENCE_ALL
-success 'packages updated'
-
-inf 'Installing core packages'
-eval apt install ${packagelist[@]} $SILENCE_ALL
-success 'installed core packages'
 
 # find the installers and run them iteratively
 export AFTERINSTALL='./AFTER_INSTALL_MESSAGE'
 
-for file in ./!(script)/install; do
+if [ "$TOPIC_NAME" = '' ];then
+  dir_search=./!(script)/install
+else
+  if ! [ -d ./$TOPIC_NAME ];then
+    die "Can't find topic '$TOPIC_NAME'"
+  fi
+  dir_search=./$TOPIC_NAME/install
+fi
+
+for file in ${dir_search}; do
   if [ -f "$file" ] && [ -x "$file" ];then
     inf "installing $file"
     $file
 
     if [ $? = 0 ];then
-      if ! [ "$QUIET" = "1" ];then
-        success "installed $file"
-      fi
+      success "installed $file"
     else
       fail "Error installing $file"
     fi
@@ -104,9 +118,7 @@ if [ -z ${DOTUPDATE+x} ];then
   $DOTFILES/script/bootstrap
 
   if [ $? = 0 ];then
-    if ! [ "$QUIET" = "1" ];then
-      success 'bootstrap complete'
-    fi
+    success 'bootstrap complete'
   else
     fail 'Error bootstrapping'
   fi

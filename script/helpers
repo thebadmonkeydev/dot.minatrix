@@ -24,7 +24,9 @@ user () {
 }
 
 success () {
-  printf "\r\n\033[2K  [$Green OK $Color_Off] $1\n"
+	if ! [ "$QUIET" = "1" ];then
+    printf "\r\n\033[2K  [$Green OK $Color_Off] $1\n"
+  fi
 }
 
 tada () {
