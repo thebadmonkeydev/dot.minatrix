@@ -6,13 +6,18 @@ source script/helpers
 set -e
 
 # Add after install message to set git author config
-cat > "$AFTERINSTALL" <<EOF
+amessage Git "
   * Be sure your git author config is correct in ~/.gitconfig.local:
 
       [core]
         name = YOUR_NAME
         email = YOUR_EMAIL
-EOF
+
+  * Or you can use:
+
+        \`git config --global user.name YOUR_NAME\`
+        \`git config --global user.email YOUR_EMAIL\`
+"
 
 # Clone the newest hub
 git clone https://github.com/github/hub.git -q
