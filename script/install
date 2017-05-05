@@ -4,6 +4,50 @@
 
 set -e
 
+# handle options
+SHORT=vq
+LONG=verbose,quiet
+
+# -temporarily store output to be able to check for errors
+# -activate advanced mode getopt quoting e.g. via “--options”
+# -pass arguments only via   -- "$@"   to separate them correctly
+PARSED=$(getopt --options $SHORT --longoptions $LONG --name "$0" -- "$@")
+if [[ $? -ne 0 ]]; then
+  # e.g. $? == 1
+  #  then getopt has complained about wrong arguments to stdout
+  exit 2
+fi
+# use eval with "$PARSED" to properly handle the quoting
+eval set -- "$PARSED"
+
+# now enjoy the options in order and nicely split until we see --
+while true; do
+  case "$1" in
+    -v|--verbose)
+      export VERBOSE=1
+      shift
+      ;;
+    -q|quiet)
+      export QUIET=1
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      echo "Should print usage here"
+      exit 3
+      ;;
+  esac
+done
+
+# verbose trumps quiet
+if [ "$VERBOSE" = "1" ];then
+  (>&2 echo 'WARN: --verbose(-v) overrides --quiet(-q)')
+  unset QUIET
+fi
+
 if [ -z ${DOTFILES+x} ];then
   export DOTFILES=~/dot.minatrix
 fi
@@ -23,17 +67,17 @@ source packages.bash
 if [ -z ${DOTUPDATE+x} ];then
   for ppa in "${ppalist[@]}"; do
     inf "Adding custom package source: $ppa"
-    add-apt-repository "$ppa" -y >/dev/null
+    eval add-apt-repository $ppa -y $SILENCE_ALL
     success "Added source:$ppa"
   done
 fi
 
 inf 'updating package info'
-apt-get update >/dev/null
+eval apt-get update $SILENCE_ALL
 success 'packages updated'
 
 inf 'Installing core packages'
-apt-get install ${packagelist[@]} >/dev/null
+eval apt install ${packagelist[@]} $SILENCE_ALL
 success 'installed core packages'
 
 # find the installers and run them iteratively
@@ -45,7 +89,9 @@ for file in ./!(script)/install; do
     $file
 
     if [ $? = 0 ];then
-      success "installed $file"
+      if ! [ "$QUIET" = "1" ];then
+        success "installed $file"
+      fi
     else
       fail "Error installing $file"
     fi
@@ -58,7 +104,9 @@ if [ -z ${DOTUPDATE+x} ];then
   $DOTFILES/script/bootstrap
 
   if [ $? = 0 ];then
-    success 'bootstrap complete'
+    if ! [ "$QUIET" = "1" ];then
+      success 'bootstrap complete'
+    fi
   else
     fail 'Error bootstrapping'
   fi
@@ -70,11 +118,13 @@ source ~/.bashrc
 if [ -z ${DOTUPDATE+x} ];then
   tada "dot.minatrix installed successfully!"
 
-  echo ''
-  echo "$(<$AFTERINSTALL)"
+  if ! [ "$QUIET" = "1" ];then
+    echo ''
+    echo "$(<$AFTERINSTALL)"
+  fi
 else
   tada "dot.minatrix updated successfully!"
 fi
 
 rm $AFTERINSTALL
-unset AFTERINSTALL
+unset AFTERINSTALL VERBOSE QUIET

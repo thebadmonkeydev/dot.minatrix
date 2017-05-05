@@ -3,8 +3,20 @@
 # A collection of bash functions for fun and profit
 source $DOTFILES/bash/colors.bash
 
+if [ "$VERBOSE" = '' ];then
+  # silence inner commands when not verbose
+  export SILENCE_STD="> /dev/null"
+  export SILENCE_ALL="$SILENCE_STD 2>&1"
+else
+  # deactivate silence when verbose is set
+  export SILENCE_STD=''
+  export SILENCE_ALL=''
+fi
+
 inf () {
-  printf "\r\n\033[2K  [$Blue .. $Color_Off] $1\n"
+	if ! [ "$QUIET" = "1" ];then
+    printf "\r\n\033[2K  [$Blue .. $Color_Off] $1\n"
+	fi
 }
 
 user () {
@@ -50,6 +62,12 @@ pushq () {
 
 popq () {
   popd $1 >/dev/null
+}
+
+function ensure_dir {
+  if ! [ -d "$1" ];then
+    mkdir -p "$1"
+  fi
 }
 
 function colors {

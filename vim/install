@@ -3,25 +3,36 @@
 # setup vim after install
 source script/helpers
 
-set -e
+export VIM_DIR="$HOME/.vim"
+export JANUS_DIR="$VIM_DIR/janus"
 
-function ensure_folder {
-  if ! [ -d "$1" ];then
-    mkdir -p "$1"
-  fi
+function janus_dirs {
+  ensure_dir "$VIM_DIR/_backup"
+  ensure_dir "$VIM_DIR/_temp"
 }
 
-if [ -z ${DOTUPDATE+x} ];then
-  rm -rf "${HOME}/.vim"
-  git clone --recursive https://github.com/carlhuda/janus.git "${HOME}/.vim" -q \
-    || die "Could not clone janus into ${HOME}/.vim"
+function janus_update {
+  pushq "$JANUS_DIR"
+    eval "
+      git clean -xdf -- "$JANUS_DIR"
+      git pull ${SILENCE_ALL}
+      git submodule sync ${SILENCE_ALL}
+      git submodule update --init ${SILENCE_ALL}
+    "
+  popq
+}
 
-  pushq "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
-  rake update folders >/dev/null 2>&1 || die "Rake failed."
-  popq
+rm -rf "$VIM_DIR"
+ensure_dir "$VIM_DIR"
+
+if [ -z ${DOTUPDATE+x} ];then
+  eval "
+    git clone --recursive --quiet https://github.com/carlhuda/janus.git ${VIM_DIR}/ ${SILENCE_ALL}
+  "
+
+  janus_update
+  janus_dirs
 else
-  pushq "${HOME}/.vim" || die "Could not go into the ${HOME}/.vim"
-  rake update >/dev/null 2>&1 || die "Rake failed."
-  popq
+  janus_update
 fi
 
