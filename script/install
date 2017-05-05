@@ -138,5 +138,7 @@ else
   tada "dot.minatrix updated successfully!"
 fi
 
-rm $AFTERINSTALL
+if [ -f "$AFTERINSTALL" ];then
+  rm $AFTERINSTALL
+fi
 unset AFTERINSTALL VERBOSE QUIET
