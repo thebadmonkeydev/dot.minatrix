@@ -11,6 +11,5 @@ set -e
 
 git fetch
 
-
 curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
-git push --set-upstream origin "${curr_branch}"
+git push --set-upstream origin "${curr_branch}" "$@"
