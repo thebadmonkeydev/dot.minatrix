@@ -22,9 +22,9 @@ set splitbelow
 set splitright
 
 " Configure Dispatch shortcuts
-nnoremap <leader>s :w<cr> :Dispatch<cr>
+nnoremap <leader>sp :w<cr> :Dispatch<cr>
 nnoremap <leader>sa :Dispatch rspec<cr>
-nnoremap <leader>si :w<cr> :Dispatch rspec %:<C-r>=line('.')<cr><cr>
+nnoremap <leader>sl :w<cr> :Dispatch rspec %:<C-r>=line('.')<cr><cr>
 nnoremap <leader>co :Copen<cr>
 
 " Quick iteration of vim config
