@@ -4,6 +4,7 @@
 
 set -e
 
+# place udot tool in sudo safe binary path
 if [ -z ${DOTUPDATE+x} ];then
   safe_dir='/usr/local/bin'
   cp $DOTFILES/bin/udot $safe_dir
