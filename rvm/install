@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# setup global git settings after install
+
+source script/helpers
+
+set -e
+
+if [ -z ${DOTUPDATE+x} ];then
+  # install mpapis public key
+  command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+
+  # download and install latest rvm with ruby
+  curl -sSL https://get.rvm.io | bash -s stable --quiet-curl
+else
+  rvm get stable
+fi
+
+

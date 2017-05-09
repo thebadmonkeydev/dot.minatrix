@@ -37,7 +37,7 @@ fuck () {
   printf "\r\n\n\033[2K  [$IRed /{>_<}\ $Color_Off] $1\n\n"
 }
 
-fail () {
+failure () {
   printf "\r\n\033[2K  [$Red FAIL $Color_Off] $1\n"
 }
 

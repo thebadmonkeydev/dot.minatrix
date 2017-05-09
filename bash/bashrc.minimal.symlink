@@ -2,10 +2,6 @@
 #
 # ~/.bashrc.minimal: executed for non-interactive shells
 
-set -a
-
-shopt -s expand_aliases
-
 # shortcut to dot.minatrix path
 if [ -z ${DOTFILES+x} ];then
   export DOTFILES=~/dot.minatrix

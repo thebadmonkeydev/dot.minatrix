@@ -107,7 +107,7 @@ for file in ${dir_search}; do
     if [ $? = 0 ];then
       success "installed $file"
     else
-      fail "Error installing $file"
+      failure "Error installing $file"
     fi
   fi
 done
@@ -120,7 +120,7 @@ if [ -z ${DOTUPDATE+x} ];then
   if [ $? = 0 ];then
     success 'bootstrap complete'
   else
-    fail 'Error bootstrapping'
+    failure 'Error bootstrapping'
   fi
 fi
 

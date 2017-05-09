@@ -4,7 +4,6 @@ packagelist=(
   git
   postgresql
   vim
-  rvm
   golang
   heroku-toolbelt
 )
