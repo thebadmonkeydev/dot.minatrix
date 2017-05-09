@@ -1,0 +1,6 @@
+[submodule "vim/janus.symlink/tabular"]
+	path = vim/janus.symlink/tabular
+	url = git@github.com:godlygeek/tabular.git
+[submodule "vim/janus.symlink/splitjoin"]
+	path = vim/janus.symlink/splitjoin
+	url = git@github.com:AndrewRadev/splitjoin.vim.git

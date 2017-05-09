@@ -52,6 +52,20 @@ nmap <leader>gdl :! dlog<cr>
 " Projectionist stuff
 nnoremap <leader>sw :A<cr>
 
+" NERDTree show hidden files (`.`)
+let NERDTreeShowHidden=1
+
+" increase nerd tree window size
+let NERDTreeWinSize=40
+
+" splitjoin settings
+let g:splitjoin_ruby_hanging_args=0
+nnoremap <leader>sj :SplitjoinSplit<cr>
+nnoremap <leader>sk :SplitjoinJoin<cr>
+
+" Fixe my fat fingers
+map <F1> <Esc>
+
 set foldmethod=syntax
 set foldnestmax=5
 set foldminlines=2
