@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+source script/helpers
+
+curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz
+
+pushq codeclimate-*
+  sudo make install
+popq
+
+rm -rf codeclimate-*
