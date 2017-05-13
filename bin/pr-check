@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#
+# pr-check
+#
+# pr-check runs a serious of checks prior to requesting a pull of a feature
+# branch.
+
+set -e
+
+# check git status
+if ! git diff-index --quiet HEAD --; then
+  die "You have local un-committed changes"
+fi
+
+# run rspec
+bundle exec rspec
+
+if [ "$?" = "1" ]; then
+  die "Spec failure"
+fi
+
+# run codeclimate
+codeclimate analyze
+
+gpromote

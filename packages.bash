@@ -1,11 +1,13 @@
 packagelist=(
-  whois
-  xclip
   git
-  postgresql
-  vim
   golang
   heroku-toolbelt
+  postgresql
+  tmux
+  tmuxinator
+  vim
+  whois
+  xclip
 )
 
 ppalist=(

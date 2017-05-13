@@ -2,7 +2,6 @@ let mapleader = ","
 let g:disable_markdown_autostyle = 1
 
 " Default janus plugins I don't care about
-call janus#disable_plugin('unimpaired')
 call janus#disable_plugin('tagbar')
 call janus#disable_plugin('nrrwrgn')
 call janus#disable_plugin('buffergator')

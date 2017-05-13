@@ -108,13 +108,13 @@ if has("statusline") && !&cp
   set statusline=
 
   " Put git head, filename, modify flags at left
-  set statusline+=%{fugitive#head()}\ %f\ %m\ %r
+  set statusline+=%f\ %m\ %r
 
   " Right-align
   set statusline+=%=
 
   " Buffer num, in-file location
-  set statusline+=Buf:#%n\ [Col:%3v\ Line:%3l/%3L]
+  set statusline+=<\ %{fugitive#head()}\ >\ \ Buf:#%n\ [Col:%3v\ Line:%3l/%3L]
 endif
 
 nmap ; :
