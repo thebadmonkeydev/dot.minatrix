@@ -131,8 +131,10 @@ if [ -z ${DOTUPDATE+x} ];then
   tada "dot.minatrix installed successfully!"
 
   if ! [ "$QUIET" = "1" ];then
-    echo ''
-    echo "$(<$AFTERINSTALL)"
+    if [ -f $AFTERINSTALL ]; then
+      echo ''
+      echo "$(<$AFTERINSTALL)"
+    fi
   fi
 else
   tada "dot.minatrix updated successfully!"
