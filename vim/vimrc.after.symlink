@@ -61,11 +61,6 @@ let NERDTreeShowHidden=1
 " increase nerd tree window size
 let NERDTreeWinSize=40
 
-" splitjoin settings
-let g:splitjoin_ruby_hanging_args=0
-nnoremap <leader>sj :SplitjoinSplit<cr>
-nnoremap <leader>sk :SplitjoinJoin<cr>
-
 " Fixe my fat fingers
 map <F1> <Esc>
 
