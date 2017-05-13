@@ -22,10 +22,13 @@ set splitbelow
 set splitright
 
 " Configure Dispatch shortcuts
-nnoremap <leader>sp :w<cr> :Dispatch<cr>
+nnoremap <leader>sp :w<cr> :Dispatch rspec %<cr>
 nnoremap <leader>sa :Dispatch rspec<cr>
-nnoremap <leader>sl :w<cr> :Dispatch rspec %:<C-r>=line('.')<cr><cr>
+nnoremap <leader>sl :w<cr> :Dispatch rspec %\:<C-r>=line('.')<cr><cr>
 nnoremap <leader>co :Copen<cr>
+
+" codeclimate stuff
+nnoremap <leader>aa :CodeClimateAnalyzeProject<cr>
 
 " Quick iteration of vim config
 nnoremap <leader>vr :vsp $MYVIMRC.after<cr>

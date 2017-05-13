@@ -4,3 +4,6 @@
 [submodule "vim/janus.symlink/splitjoin"]
 	path = vim/janus.symlink/splitjoin
 	url = git@github.com:AndrewRadev/splitjoin.vim.git
+[submodule "vim/janus.symlink/codeclimate"]
+	path = vim/janus.symlink/codeclimate
+	url = https://github.com/wfleming/vim-codeclimate
