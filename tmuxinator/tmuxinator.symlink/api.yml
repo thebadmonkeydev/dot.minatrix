@@ -1,7 +1,7 @@
 # ~/.tmuxinator/api.yml
 
 name: api
-root: ~/assembledbrands/api-core
+root: ~/projects/assembledbrands/api-core
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 pre_window: rvm use 2.3.0
