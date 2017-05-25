@@ -2,7 +2,7 @@
 #
 # c()
 #
-# Interactively fuzzy search for project folders under $PROJECTS
+# Interactively fuzzy search to cd into $PROJECTS
 
 
 c() {
