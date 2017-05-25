@@ -7,3 +7,6 @@
 [submodule "vim/janus.symlink/codeclimate"]
 	path = vim/janus.symlink/codeclimate
 	url = https://github.com/wfleming/vim-codeclimate
+[submodule "vim/janus.symlink/projectionist"]
+	path = vim/janus.symlink/projectionist
+	url = git://github.com/tpope/vim-projectionist.git

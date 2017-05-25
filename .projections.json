@@ -1,0 +1,22 @@
+{
+  "functions/*.bash": {
+    "type": "function",
+    "template": [
+      "#!/bin/bash",
+      "#",
+      "# {basename}()",
+      "#",
+      "# "
+    ]
+  },
+  "bin/*": {
+    "type":"bin",
+    "template": [
+      "#!/usr/bin/env bash",
+      "#",
+      "# {basename}",
+      "#",
+      "#"
+    ]
+  }
+}

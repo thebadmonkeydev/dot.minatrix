@@ -23,7 +23,7 @@ set splitright
 
 " Configure Dispatch shortcuts
 nnoremap <leader>sp :w<cr> :Dispatch rspec %<cr>
-nnoremap <leader>sa :Dispatch rspec<cr>
+nnoremap <leader>sa :Dispatch rspec --fail-fast<cr>
 nnoremap <leader>sl :w<cr> :Dispatch rspec %\:<C-r>=line('.')<cr><cr>
 nnoremap <leader>co :Copen<cr>
 
@@ -41,12 +41,14 @@ nnoremap <leader>ir :! irb<cr>
 nnoremap <leader>rc :Rails console<cr>
 nnoremap <leader>rs :Rserver<cr>
 nnoremap <leader>mig :Rake db:migrate db:test:prepare<cr>
+nnoremap <leader>rr :Dispatch! bundle exec rails restart<cr>
 
 " Git interactions
 nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>gco :Gcommit<cr>
 nnoremap <leader>gpu :Dispatch! git-promote<cr>
 nnoremap <leader>gpr :Dispatch git-pr<cr>
+nnoremap <leader>gbr :Dispatch git branch<cr>
 nnoremap <leader>gdi :Git diff<cr>
 nmap <leader>gl :! log<cr>
 nmap <leader>gdi :! git diff --color<cr>
