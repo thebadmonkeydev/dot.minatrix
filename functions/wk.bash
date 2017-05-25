@@ -8,7 +8,7 @@
 # change dir with interactive completion in $PROJECTS and start
 # a new tmux session with vim in the project's root.
 
-work() {
+wk() {
   _sin
 
   if [ ! -z "$SELECTED_PROJECT" ];then
