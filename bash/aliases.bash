@@ -17,18 +17,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lss='ls -la | less'
 
-# Navigation aliases (should probably set this up with c from _functions)
-alias gems='cd ~/gems'
-alias sites='cd ~/sites'
-alias exp='cd ~/experiments'
-alias scripts='cd ~/scripts'
-
 # shortcut for opening a file in default app from commandline
 alias open='xdg-open'
-
-# easy clipboard copy on commandline
-alias copy='xclip -sel clip'
-alias pbcopy='xclip -sel clip'
 
 # outputs  the netstat of a process using a specified port
 alias procport='netstat -tulpn | grep'
