@@ -20,10 +20,15 @@ amessage Git "
 "
 
 # Clone the newest hub
+if [ -d './hub' ];then
+  rm -rf ./hub
+fi
 git clone https://github.com/github/hub.git -q
 
 # In hub directory
 pushq ./hub
+
+  git checkout tags/v2.2.9
 
   # build hub binary
   ./script/build >/dev/null
