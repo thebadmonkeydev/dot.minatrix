@@ -14,7 +14,13 @@ wk() {
   if [ ! -z "$SELECTED_PROJECT" ];then
     echo "Starting work on ($SELECTED_PROJECT)"
 
+    # check tmux session
+
     sessionname=$(echo $SELECTED_PROJECT | tr '.' '-')
-    tmux new-session -s "$sessionname" "vim $PROJECTS/$SELECTED_PROJECT; exec bash"
+    if [ -z "$(tmux ls | grep $sessionname)" ];then
+      tmux new-session -s "$sessionname" "vim; exec bash"
+    else
+      tmux attach -t "$sessionname"
+    fi
   fi
 }
