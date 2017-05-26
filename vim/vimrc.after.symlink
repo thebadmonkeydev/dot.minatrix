@@ -114,4 +114,6 @@ if has("statusline") && !&cp
   set statusline+=<\ %{fugitive#head()}\ >\ \ Buf:#%n\ [Col:%3v\ Line:%3l/%3L]
 endif
 
+autocmd Filetype markdown setlocal spell
+
 nmap ; :
