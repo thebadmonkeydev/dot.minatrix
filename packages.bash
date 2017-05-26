@@ -1,7 +1,7 @@
 packagelist=(
   git
   golang
-  heroku-toolbelt
+  heroku
   postgresql
   tmux
   tmuxinator
