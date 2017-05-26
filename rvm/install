@@ -13,7 +13,7 @@ if [ -z ${DOTUPDATE+x} ];then
   # download and install latest rvm with ruby
   curl -sSL https://get.rvm.io | bash -s stable --quiet-curl
 else
-  rvm get stable
+  ~/.rvm/bin/rvm get stable
 fi
 
 
