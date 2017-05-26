@@ -6,7 +6,7 @@
 
 
 c() {
-  _sin
+  _sin "$@"
 
   if [ ! -z "$SELECTED_PROJECT" ];then
     echo "Entering project ($SELECTED_PROJECT)"

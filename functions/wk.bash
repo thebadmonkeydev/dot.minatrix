@@ -9,14 +9,17 @@
 # a new tmux session with vim in the project's root.
 
 wk() {
-  c
+  c "$@"
 
   if [ ! -z "$SELECTED_PROJECT" ];then
-    echo "Starting work on ($SELECTED_PROJECT)"
-
-    # check tmux session
+    if [ ! -z "$TMUX" ];then
+      failure 'detach from tmux first'
+      return
+    fi
 
     sessionname=$(echo $SELECTED_PROJECT | tr '.' '-')
+    echo "Starting work on ($SELECTED_PROJECT)"
+
     if [ -z "$(tmux ls | grep $sessionname)" ];then
       tmux new-session -s "$sessionname" "vim; exec bash"
     else

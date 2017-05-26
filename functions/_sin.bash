@@ -23,7 +23,7 @@
 #   _sin takes no options, but you can provide a query to seed the fuzzy search
 #
 # RELATED
-#   c(3), v(3), wk(3), fzf(1)
+#   c(3), wk(3), fzf(1)
 #
 # AUTHOR
 #   Michael Kelly (michaelkelly322@gmail.com)
