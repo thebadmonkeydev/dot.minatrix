@@ -13,4 +13,4 @@ if [ -z ${remote_branch+x} ];then
   die "This branch does not have a remote"
 fi
 
-hub pull-request
+hub pull-request "$@"
