@@ -26,6 +26,8 @@ nnoremap <leader>sp :w<cr> :Dispatch rspec %<cr>
 nnoremap <leader>sa :Dispatch rspec --fail-fast<cr>
 nnoremap <leader>sl :w<cr> :Dispatch rspec %\:<C-r>=line('.')<cr><cr>
 nnoremap <leader>co :Copen<cr>
+nnoremap <leader>d  :Dispatch
+nnoremap <leader>b  :Dispatch!
 
 " codeclimate stuff
 nnoremap <leader>aa :CodeClimateAnalyzeProject<cr>
