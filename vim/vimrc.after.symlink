@@ -38,7 +38,7 @@ nnoremap <leader>so :source $MYVIMRC<cr>
 nnoremap <leader>ir :! irb<cr>
 
 " Rails interactions
-nnoremap <leader>rc :Rails console<cr>
+nnoremap <leader>rc :Dispatch bundle exec rails console<cr>
 nnoremap <leader>rs :Rserver<cr>
 nnoremap <leader>mig :Rake db:migrate db:test:prepare<cr>
 nnoremap <leader>rr :Dispatch! bundle exec rails restart<cr>
