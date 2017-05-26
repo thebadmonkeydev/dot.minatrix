@@ -4,7 +4,7 @@
 #   _sin(3)
 #
 # SYNOPSIS
-#   _sin [query]
+#   _sin [root] [depth]
 #
 # DESCRIPTION
 #   _sin makes navigating your development projects easy as sin!
@@ -31,13 +31,20 @@
 #     Website: https://thebadmonkeydev.github.io
 #
 
-if [ -z "$PROJECTS" ];then
-  # default PROJECTS dir to HOME/projects
-  export PROJECTS=~/projects
-fi
-
 _sin() {
-  pushq $PROJECTS
-    export SELECTED_PROJECT=$(find -L */ -maxdepth 1 -type d | fzf-tmux -d 15 -q "$1")
+  if [ -z "$2" ];then
+    depth=1
+  else
+    depth=$(($2 - 1))
+  fi
+
+  if [ -z "$1" ];then
+    directory=./
+  else
+    directory=$1
+  fi
+
+  pushq $directory
+    echo $(find -L */ -maxdepth $depth -type d | fzf-tmux -d 15)
   popq
 }

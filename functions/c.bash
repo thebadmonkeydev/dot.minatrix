@@ -6,10 +6,16 @@
 
 
 c() {
-  _sin "$@"
+  directory=$(_sin "$@")
 
-  if [ ! -z "$SELECTED_PROJECT" ];then
-    echo "Entering project ($SELECTED_PROJECT)"
-    cd $PROJECTS/$SELECTED_PROJECT
+  if [ -z "$1" ];then
+    root=./
+  else
+    root=$1
+  fi
+
+  if [ ! -z "$directory" ];then
+    cd $root/$directory
+    echo $directory
   fi
 }
