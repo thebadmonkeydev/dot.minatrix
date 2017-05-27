@@ -4,7 +4,6 @@ packagelist=(
   heroku
   postgresql
   tmux
-  tmuxinator
   vim
   whois
   xclip
