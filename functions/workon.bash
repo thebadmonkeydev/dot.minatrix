@@ -22,13 +22,14 @@ workon() {
     return
   fi
 
-  sessionname=$(c $PROJECTS 2 | tr '.' '-')
+  relative=$(_sin $PROJECTS 2)
+  sessionname=$(echo $relative | tr '.' '-')
 
   if [ ! -z "$sessionname" ];then
     echo "Starting work on ($sessionname)"
 
     if [ -z "$(tmux ls | grep $sessionname)" ];then
-      tmux new-session -s "$sessionname" "vim; exec bash"
+      tmux new-session -s "$sessionname" -c "$PROJECTS/$relative" "vim; exec bash"
     else
       tmux attach -t "$sessionname"
     fi
