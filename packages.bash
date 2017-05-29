@@ -7,6 +7,7 @@ packagelist=(
   vim
   whois
   xclip
+  byzanz
 )
 
 ppalist=(

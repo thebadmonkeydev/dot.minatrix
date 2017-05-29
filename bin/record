@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# record
+#
+# Is a small tool using xrectsel and byzanz to record regions of your screen
+# as gifs. Original credit goes to [Rob W](https://askubuntu.com/a/201018).
+# my only modifications were to make it play nicer in my gnome environment.
+
+# Delay before starting
+DELAY=3
+
+DURATION=10
+OUTPUT=./temp.gif
+
+while getopts "o::d::" opt;do
+  case "$opt" in
+    d)  DURATION=$OPTARG;;
+    o)  OUTPUT=$OPTARG;;
+    \?) exit 3 ;;
+    :)  exit 3 ;;
+  esac
+done
+
+echo "DURATION: $DURATION"
+echo "OUTPUT  : $OUTPUT"
+
+ARGUMENTS=$(xrectsel "--x=%x --y=%y --width=%w --height=%h") || exit -1
+
+echo Delaying $DELAY seconds. After that, byzanz will start
+for (( i=$DELAY; i>0; --i )) ; do
+    echo $i
+    sleep 1
+done
+byzanz-record --verbose --delay=0 ${ARGUMENTS} --duration $DURATION $OUTPUT
