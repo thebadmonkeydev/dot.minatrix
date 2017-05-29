@@ -4,10 +4,12 @@
 #
 
 _tmux() {
-  opts=$(tmux ls -F "#{session_name}")
+  opts=$(tmux ls -F "#{session_name}" 2>/dev/null)
 
-  COMPREPLY=( $(compgen -W "${opts}" -- "${COMP_WORDS[COMP_CWORD]}") )
-  return 0
+  if [ $? -eq 0 ];then
+    COMPREPLY=( $(compgen -W "${opts}" -- "${COMP_WORDS[COMP_CWORD]}") )
+    return 0
+  fi
 }
 
 complete -F _tmux tmux
