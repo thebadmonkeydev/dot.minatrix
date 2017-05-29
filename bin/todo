@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Creates something for me to do.
 #
@@ -15,4 +15,18 @@
 # Millions of dollars later and `touch` wins.
 
 # Run our new web 2.0 todo list application and raise millions of VC dollars.
-touch ~/Desktop/"$*"
+TODO_DIR=~/Desktop
+
+read_todos () {
+  find $TODO_DIR -maxdepth 1 -size 0k -type f ! -name "*.*" | \
+  while read filename
+  do
+    echo $(basename "$filename")
+  done
+}
+
+if [ "$#" -ne 0 ];then
+  touch "$TODO_DIR/$*"
+fi
+
+read_todos
