@@ -25,8 +25,10 @@ read_todos () {
   done
 }
 
-if [ "$#" -ne 0 ];then
-  touch "$TODO_DIR/$*"
-fi
+todo () {
+  if [ "$#" -ne 0 ];then
+    touch "$TODO_DIR/$*"
+  fi
 
-read_todos
+  read_todos
+}
