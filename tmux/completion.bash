@@ -13,4 +13,3 @@ _tmux() {
 }
 
 complete -F _tmux tmux
-complete -F _tmux amux
