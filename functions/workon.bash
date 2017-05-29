@@ -35,3 +35,5 @@ workon() {
     fi
   fi
 }
+
+complete -F _tmux workon
