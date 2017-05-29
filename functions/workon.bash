@@ -28,7 +28,7 @@ workon() {
   if [ ! -z "$sessionname" ];then
     echo "Starting work on ($sessionname)"
 
-    if [ -z "$(tmux ls | grep $sessionname)" ];then
+    if [ -z "$(tmux ls 2>/dev/null | grep $sessionname)" ];then
       tmux new-session -s "$sessionname" -c "$PROJECTS/$relative" "vim; exec bash"
     else
       tmux attach -t "$sessionname"
