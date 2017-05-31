@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#
+# workon
+#
+#
+
+# default PROJECTS dir to HOME/projects
+if [ -z "$PROJECTS" ];then
+  export PROJECTS=~/projects
+fi
+
+# Fail early if called within a tmux session
+if [ ! -z "$TMUX" ];then
+  die 'detach from tmux first'
+fi
+
+set -e
+
+# if parameter passed, use it as sessionname target
+if [ -z "$1" ];then
+  relative=$(_sin $PROJECTS 2)
+  sessionname=$(echo $relative | tr '.' '-')
+else
+  sessionname="$1"
+fi
+
+
+if [ ! -z "$sessionname" ];then
+  echo "Starting work on ($sessionname)"
+
+  if [ -z "$(tmux ls 2>/dev/null | grep $sessionname)" ];then
+    tmux new-session -s "$sessionname" -c "$PROJECTS/$relative" "vim; exec bash"
+  else
+    tmux attach -t "$sessionname"
+  fi
+fi
+
