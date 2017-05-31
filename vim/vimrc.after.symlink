@@ -113,7 +113,7 @@ if has("statusline") && !&cp
   set statusline+=%=
 
   " Buffer num, in-file location
-  set statusline+=<\ %{fugitive#head()}\ >\ \ Buf:#%n\ [Col:%3v\ Line:%3l/%3L]
+  set statusline+=%{fugitive#head()}\ \ \ \ \ #%n\ [\ %3l/%3L\ %3v]
 endif
 
 " Spell check config
