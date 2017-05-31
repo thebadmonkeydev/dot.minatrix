@@ -22,8 +22,12 @@ workon() {
     return
   fi
 
-  relative=$(_sin $PROJECTS 2)
-  sessionname=$(echo $relative | tr '.' '-')
+  if [ -z "$1" ];then
+    relative=$(_sin $PROJECTS 2)
+    sessionname=$(echo $relative | tr '.' '-')
+  else
+    sessionname="$1"
+  fi
 
   if [ ! -z "$sessionname" ];then
     echo "Starting work on ($sessionname)"
