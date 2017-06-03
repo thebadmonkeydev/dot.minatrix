@@ -49,6 +49,7 @@ nnoremap <leader>rr :Dispatch! bundle exec rails restart<cr>
 nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>gco :Gcommit<cr>
 nnoremap <leader>gpu :Dispatch! git-promote<cr>
+nnoremap <leader>gpp :Dispatch! git-promote -f<cr>
 nnoremap <leader>gpr :Dispatch git-pr<cr>
 nnoremap <leader>gbr :Dispatch git branch<cr>
 nnoremap <leader>gdi :Git diff<cr>
