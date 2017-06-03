@@ -27,7 +27,9 @@ read_todos () {
 
 todo () {
   if [ "$#" -ne 0 ];then
-    touch "$TODO_DIR/$*"
+    file=$(echo "$*" | tr '/' '-')
+
+    touch "$TODO_DIT/$file"
   fi
 
   read_todos
