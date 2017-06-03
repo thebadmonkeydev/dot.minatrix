@@ -58,7 +58,7 @@ nmap <leader>gdi :! git diff --color<cr>
 nmap <leader>gdl :! dlog<cr>
 
 " Projectionist stuff
-nnoremap <leader>sw :A<cr>
+nnoremap <leader>aa :A<cr>
 
 " NERDTree show hidden files (`.`)
 let NERDTreeShowHidden=1
