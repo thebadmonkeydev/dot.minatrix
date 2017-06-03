@@ -42,7 +42,7 @@ nnoremap <leader>ir :! irb<cr>
 " Rails interactions
 nnoremap <leader>rc :Dispatch bundle exec rails console<cr>
 nnoremap <leader>rs :Rserver<cr>
-nnoremap <leader>mig :Rake db:migrate db:test:prepare<cr>
+nnoremap <leader>mig :Dispatch! bundle exec rails db:environment:set db:migrate db:test:prepare<cr>
 nnoremap <leader>rr :Dispatch! bundle exec rails restart<cr>
 
 " Git interactions
