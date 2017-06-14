@@ -29,7 +29,7 @@ todo () {
   if [ "$#" -ne 0 ];then
     file=$(echo "$*" | tr '/' '-')
 
-    touch "$TODO_DIT/$file"
+    touch "$TODO_DIR/$file"
   fi
 
   read_todos
