@@ -53,7 +53,7 @@ nnoremap <leader>gpp :Dispatch! git-promote -f<cr>
 nnoremap <leader>gpr :Dispatch git-pr<cr>
 nnoremap <leader>gbr :Dispatch git branch<cr>
 nnoremap <leader>gdi :Git diff<cr>
-nmap <leader>gl :! log<cr>
+nmap <leader>gl :! glog<cr>
 nmap <leader>gdi :! git diff --color<cr>
 nmap <leader>gdl :! dlog<cr>
 
