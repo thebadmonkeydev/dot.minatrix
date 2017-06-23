@@ -37,7 +37,7 @@ nnoremap <leader>vr :vsp $MYVIMRC.after<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
 
 " Ruby
-nnoremap <leader>ir :! irb<cr>
+nnoremap <leader>ir :Dispatch irb<cr>
 
 " Rails interactions
 nnoremap <leader>rc :Dispatch bundle exec rails console<cr>
