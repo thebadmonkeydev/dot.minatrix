@@ -123,3 +123,4 @@ autocmd Filetype markdown setlocal spell
 autocmd Filetype gitcommit setlocal spell
 
 nmap ; :
+vmap ; :
