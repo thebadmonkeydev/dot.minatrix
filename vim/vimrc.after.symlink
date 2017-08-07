@@ -41,7 +41,7 @@ nnoremap <leader>ir :Dispatch irb<cr>
 
 " Rails interactions
 nnoremap <leader>rc :Dispatch bundle exec rails console<cr>
-nnoremap <leader>rs :Rserver<cr>
+nnoremap <leader>rs :Dispatch! bundle exec rails s<cr>
 nnoremap <leader>mig :Dispatch! bundle exec rails db:environment:set db:migrate db:test:prepare<cr>
 nnoremap <leader>rr :Dispatch! bundle exec rails restart<cr>
 
@@ -121,6 +121,9 @@ endif
 set spellfile=~/.spell/en.utf-8.add
 autocmd Filetype markdown setlocal spell
 autocmd Filetype gitcommit setlocal spell
+
+" Lorem Ipsum generation
+nmap <leader>L :read ~/dot.minatrix/vim/templates/lorem_ipsum.txt<CR>
 
 nmap ; :
 vmap ; :
