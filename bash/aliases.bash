@@ -22,3 +22,6 @@ alias open='xdg-open'
 
 # outputs  the netstat of a process using a specified port
 alias procport='netstat -tulpn | grep'
+
+# I always try to use `quit` to kill terminal windows
+alias quit=exit
