@@ -2,5 +2,6 @@
 shopt -s expand_aliases
 
 alias w='workon'
+alias doing='read_todos'
 
 complete -F _tmux w

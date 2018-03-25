@@ -119,8 +119,9 @@ endif
 
 " Spell check config
 set spellfile=~/.spell/en.utf-8.add
-autocmd Filetype markdown setlocal spell
+autocmd Filetype markdown  setlocal spell
 autocmd Filetype gitcommit setlocal spell
+autocmd Filetype markdown  setlocal textwidth=0 wrapmargin=0
 
 " Lorem Ipsum generation
 nmap <leader>L :read ~/dot.minatrix/vim/templates/lorem_ipsum.txt<CR>

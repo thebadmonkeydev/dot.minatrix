@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# faktory
+#
+#
+
+#docker run --rm -it -p 7419:7419 -p 7420:7420 contribsys/faktory:0.6.1 -b :7419
+docker run --rm -it -e VIRTUAL_HOST=faktory.local -e VIRTUAL_PORT=7419 -v faktory-data:/var/lib/faktory -p 127.0.0.1:7419:7419 -p 127.0.0.1:7420:7420 contribsys/faktory:latest -b 0.0.0.0:7419 -d ~/faktory-test -e production

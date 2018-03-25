@@ -18,7 +18,17 @@ done
 # Add bin to paths
 export PATH="$PATH:./bin:$HOME/.bin"
 export PATH="$PATH:$HOME/dot.minatrix/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # set non-interactive bash environment
 export BASH_ENV="~/.bashrc.minimal"
 
+# docker client setup
+#export DOCKER_HOST=tcp://shared.ackfoundry.com:2376
+#export DOCKER_TLS_VERIFY=1
+#export DOCKER_CERT_PATH=~/.docker
+
+alias compose=docker-compose
+alias pbcopy="xclip -sel clip"
+
+export KOPS_STATE_STORE=s3://ackfoundry-state-store

@@ -13,6 +13,10 @@ unbind Down
 unbind Left
 unbind Right
 
+# terminal title
+set-option -g set-titles on
+set-option -g set-titles-string "#S"
+
 # hardstatus line theme
 set-option -g status-fg default
 set-option -g status-bg default

@@ -25,3 +25,5 @@ alias procport='netstat -tulpn | grep'
 
 # I always try to use `quit` to kill terminal windows
 alias quit=exit
+
+alias ls='tree -L 1 --dirsfirst -ph'

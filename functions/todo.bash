@@ -18,10 +18,12 @@
 TODO_DIR=~/Desktop
 
 read_todos () {
-  find $TODO_DIR -maxdepth 1 -size 0k -type f ! -name "*.*" | \
+  find $TODO_DIR -maxdepth 1 -type f ! -name "*.*" | \
   while read filename
   do
-    echo $(basename "$filename")
+    echo
+    echo "-> $(basename "$filename")"
+    cat $filename | sed -e 's/# vim: ft=markdown//g' | sed '/./,$!d' | sed -e 's/^/\t/'
   done
 }
 
@@ -29,7 +31,7 @@ todo () {
   if [ "$#" -ne 0 ];then
     file=$(echo "$*" | tr '/' '-')
 
-    touch "$TODO_DIR/$file"
+    vim "$TODO_DIR/$file"
   fi
 
   read_todos
