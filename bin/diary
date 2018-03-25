@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# diary
+#
+#
+JOURNALS_ROOT='/home/michael/Desktop'
+
+JOURNAL_ROOT=$JOURNALS_ROOT/${1}
+
+if [ ! -d "$JOURNAL_ROOT" ]; then
+  mkdir $JOURNAL_ROOT -p
+fi
+
+if [[ -z "${2// }" ]];then
+  CURRENT_FILE_PATH=$JOURNAL_ROOT/$(date +%F).md
+else
+  CURRENT_FILE_PATH=$JOURNAL_ROOT/$(date +%F)-${2}.md
+fi
+
+eval $EDITOR $CURRENT_FILE_PATH

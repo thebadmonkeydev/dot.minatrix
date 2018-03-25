@@ -27,3 +27,6 @@ alias procport='netstat -tulpn | grep'
 alias quit=exit
 
 alias ls='tree -L 1 --dirsfirst -ph'
+
+alias journal='diary journal'
+alias standup='diary standup'
