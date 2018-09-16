@@ -4,6 +4,8 @@
 #
 #
 
+source ~/dot.minatrix/functions/_sin.bash
+
 # default PROJECTS dir to HOME/projects
 if [ -z "$PROJECTS" ];then
   export PROJECTS=~/projects
@@ -22,6 +24,7 @@ if [ -z "$1" ];then
   sessionname=$(echo $relative | tr '.' '-')
 else
   sessionname="$1"
+  relative=$sessionname
 fi
 
 

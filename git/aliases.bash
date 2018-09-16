@@ -13,3 +13,5 @@ alias staged='diff --cached'
 alias gpromote='git-promote'
 alias gpr='git-pr'
 alias reup='git-reup'
+
+alias fetchbase='git fetch && git rebase origin/master'

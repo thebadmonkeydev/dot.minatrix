@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# projects
+#
+#
+
+pushd ~/projects >/dev/null
+  find -L */ -maxdepth 1 -type d
+popd >/dev/null

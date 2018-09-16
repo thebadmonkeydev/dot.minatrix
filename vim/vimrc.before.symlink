@@ -1,16 +1,32 @@
 let mapleader = ","
 
-" Default janus plugins I don't care about
-call janus#disable_plugin('tagbar')
-call janus#disable_plugin('nrrwrgn')
-call janus#disable_plugin('buffergator')
-call janus#disable_plugin('vroom')
-call janus#disable_plugin('vim-multi-cursors')
-
 " Fuck vim's disaster recovery...I have literally never needed it
 " or expected that vim would be the place to get it from
 set nobackup
 set noswapfile
+
+" Text settings
+set encoding=utf-8
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set list
+set backspace=indent,eol,start
+
+" List chars
+set listchars=""                  " Reset the listchars
+set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
+set listchars+=trail:.            " show trailing spaces as dots
+set listchars+=extends:>          " The character to show in the last column when wrap is
+                                  " off and the line continues beyond the right of the screen
+set listchars+=precedes:<         " The character to show in the last column when wrap is
+                                  " off and the line continues beyond the left of the screen
+
+" search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
 " let $NO_COMPLETION = 1
 let $BASH_ENV = '~/.bashrc.minimal'

@@ -22,3 +22,5 @@
   rebase = true
 [diff "ruby"]
   wordRegex = (@@?|\\b:|[^:]:)?[[:alnum:]_]+|:\"[^\"]+\"|::|[^[:space:]]
+[init]
+	templatedir = ~/.git_template

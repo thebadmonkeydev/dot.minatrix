@@ -30,3 +30,8 @@ alias ls='tree -L 1 --dirsfirst -ph'
 
 alias journal='diary journal'
 alias standup='diary standup'
+
+alias pomo='~/dot.minatrix/bin/pomodoro work &'
+alias bomo='~/dot.minatrix/bin/pomodoro short &'
+
+alias pql='docker run -e POSTGRES_USER=michael -p 5432:5432 -v /var/lib/postgresql/data:/var/lib/postgresql/data postgres -c log_statement=all'

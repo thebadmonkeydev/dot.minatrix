@@ -44,7 +44,7 @@ _sin() {
     directory=$1
   fi
 
-  pushq $directory
-    echo $(find -L */ -maxdepth $depth -type d | fzf-tmux -d 15)
-  popq
+  pushd $directory >/dev/null
+    echo $(find -L */ -maxdepth $depth -type d | ~/dot.minatrix/bin/fzf-tmux -d 15)
+  popd >/dev/null
 }

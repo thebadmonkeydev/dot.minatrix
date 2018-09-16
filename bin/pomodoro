@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+# pomodoro
+#
+#
+
+print_usage () {
+  echo "pomodoro (work|short|long) [seconds]"
+}
+
+if [ -z "$1" ];then
+  print_usage
+  exit
+fi
+
+if [ "$1" = "work" ];then
+  startmsg="Get shit done!"
+  endmsg="Take a break."
+  seconds=1500
+fi
+
+if [ "$1" = "short" ];then
+  startmsg="Take a quick break."
+  endmsg="Back at it Mother Fucker!"
+  seconds=300
+fi
+
+if [ "$1" = "long" ];then
+  startmsg="Go outside or something."
+  endmsg="Back at it Mother Fucker!"
+  seconds=900
+fi
+
+if [ ! -z "$2" ];then
+  seconds=$2
+fi
+
+notify-send "$startmsg"
+paplay /usr/share/sounds/purple/login.wav
+sleep $seconds
+paplay /usr/share/sounds/purple/alert.wav
+notify-send "$endmsg"

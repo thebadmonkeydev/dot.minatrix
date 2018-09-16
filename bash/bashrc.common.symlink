@@ -31,4 +31,7 @@ export BASH_ENV="~/.bashrc.minimal"
 alias compose=docker-compose
 alias pbcopy="xclip -sel clip"
 
-export KOPS_STATE_STORE=s3://ackfoundry-state-store
+eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+dbus-update-activation-environment --systemd DISPLAY
+

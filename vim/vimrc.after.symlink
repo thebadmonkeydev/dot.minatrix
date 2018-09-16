@@ -15,6 +15,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" NERDTree setup
+nnoremap <leader>n :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+
 " Filetype detection
 au BufRead,BufNewFile *.bash setfiletype sh
 
@@ -22,12 +25,16 @@ set splitbelow
 set splitright
 
 " Configure Dispatch shortcuts
-nnoremap <leader>sp :w<cr> :Dispatch rspec %<cr>
-nnoremap <leader>sa :Dispatch rspec --fail-fast<cr>
-nnoremap <leader>sl :w<cr> :Dispatch rspec %\:<C-r>=line('.')<cr><cr>
+nnoremap <leader>sp :w<cr> :term time bin/rspec %<cr>
+"nnoremap <leader>sp :w<cr> :Dispatch! urxvt --hold -e bash -c "time bundle exec rspec %"<cr>
+"nnoremap <leader>sa :Dispatch! urxvt --hold -e bash -c "time bundle exec rspec --fail-fast"<cr>
+nnoremap <leader>sa :term bin/rspec<cr>
+nnoremap <leader>sl :w<cr> :term bin/rspec %\:<C-r>=line('.')<cr><cr>
+"nnoremap <leader>sl :w<cr> :Dispatch! urxvt --hold -e bash -c "time bundle exec rspec %\:<C-r>=line('.')<cr>"<cr>
 nnoremap <leader>co :Copen<cr>
 nnoremap <leader>d  :Dispatch
 nnoremap <leader>b  :Dispatch!
+nnoremap gl gF
 
 " codeclimate stuff
 nnoremap <leader>aa :CodeClimateAnalyzeProject<cr>
@@ -40,9 +47,11 @@ nnoremap <leader>so :source $MYVIMRC<cr>
 nnoremap <leader>ir :Dispatch irb<cr>
 
 " Rails interactions
-nnoremap <leader>rc :Dispatch bundle exec rails console<cr>
-nnoremap <leader>rs :Dispatch! bundle exec rails s<cr>
-nnoremap <leader>mig :Dispatch! bundle exec rails db:environment:set db:migrate db:test:prepare<cr>
+"nnoremap <leader>rc :Dispatch bundle exec rails console<cr>
+nnoremap <leader>rc :Dispatch! urxvt -e bash -c "bundle exec rails console"<cr>
+nnoremap <leader>rs :Dispatch! urxvt -e bash -c "bundle exec rails s"<cr>
+nnoremap <leader>rf :Dispatch! urxvt -e bash -c "bundle exec foreman s -f Procfile.dev.nossr"<cr>
+nnoremap <leader>mig :Dispatch! bundle exec rails db:migrate<cr>
 nnoremap <leader>rr :Dispatch! bundle exec rails restart<cr>
 
 " Git interactions
@@ -69,9 +78,6 @@ let NERDTreeWinSize=40
 " Fixe my fat fingers
 map <F1> <Esc>
 
-set foldmethod=syntax
-set foldnestmax=5
-set foldminlines=2
 set nofoldenable
 
 set modelines=2
@@ -98,8 +104,25 @@ nnoremap <S-h> :call ToggleHiddenAll()<CR>
 
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'bash=sh', 'css', 'diff', 'git', 'haml', 'javascript', 'less', 'sass', 'sql', 'tmux']
 
-hi StatusLine ctermbg=238 ctermfg=68
-hi StatusLineNC ctermbg=238 ctermfg=68
+hi Normal ctermbg=none
+hi StatusLine ctermbg=none ctermfg=8 cterm=underline
+hi StatusLineNC ctermbg=none ctermfg=8 cterm=none
+hi FileNameStatus ctermbg=none ctermfg=8 cterm=underline
+hi VertSplit ctermbg=none ctermfg=8 cterm=none
+hi GitBranch ctermbg=none ctermfg=4 cterm=none
+hi GitBranchBracket ctermbg=none ctermfg=20 cterm=none
+hi LineNR ctermbg=none ctermfg=8 cterm=none
+hi EndOfBuffer ctermbg=none ctermfg=8
+hi Cursor ctermbg=8 ctermfg=none
+hi iCursor ctermbg=8 ctermfg=none
+"hi rubySymbol ctermbg=none ctermfg=4
+"hi CursorLineNR ctermbg=96 ctermfg=8
+"hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+"set cursorline
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
@@ -107,14 +130,18 @@ if has("statusline") && !&cp
   " Start the status line
   set statusline=
 
-  " Put git head, filename, modify flags at left
-  set statusline+=%f\ %m\ %r
+  " left
+  set statusline+=%<\                                              " truncate at start
+  set statusline+=%#FileNameStatus#\ %.64f\ %m\ %r                 " Put git head, filename, modify flags at left
 
-  " Right-align
   set statusline+=%=
 
+  " Right
+  set statusline+=%#GitBranchBracket#%#GitBranchBracket#          " Open bracket for git branch in status
+  set statusline+=%#GitBranch#%.64{fugitive#head()}               " Git head
+  set statusline+=%#GitBranchBracket#%#GitBranchBracket#          " Closing bracket for git branch in status
   " Buffer num, in-file location
-  set statusline+=%{fugitive#head()}\ \ \ \ \ #%n\ [\ %3l/%3L\ %3v]
+  set statusline+=%#StatusLine#\ [%4l/%4L]
 endif
 
 " Spell check config
@@ -126,5 +153,11 @@ autocmd Filetype markdown  setlocal textwidth=0 wrapmargin=0
 " Lorem Ipsum generation
 nmap <leader>L :read ~/dot.minatrix/vim/templates/lorem_ipsum.txt<CR>
 
+imap jj <Esc>
+imap <F1> <Esc>
 nmap ; :
 vmap ; :
+
+" ctag + ctlp
+nnoremap <leader>. :CtrlPTag<cr>
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
