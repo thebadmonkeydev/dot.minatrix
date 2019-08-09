@@ -1,0 +1,10 @@
+rofi.color-enabled:     true
+rofi.color-window:      argb:EE000000, argb:EE000000, argb:EE000000
+rofi.color-normal:      argb:EE000000, #819396, argb:EE000000, #008ed4, #ffffff
+rofi.color-active:      #002b37, #008ed4, #003643, #008ed4, #66c6ff
+rofi.color-urgent:      #002b37, #da4281, #003643, #008ed4, #890661
+
+rofi.lines:             7
+rofi.bw:                0
+rofi.hide-scrollbar:    true
+rofi.width:             40

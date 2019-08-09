@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# TODO Script this using docker postgres for control
+# TODO also remove sudoers change
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  sudo /bin/systemctl start postgresql
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+  sudo /bin/systemctl restart postgresql
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+  sudo /bin/systemctl stop postgresql
+fi
+
+status=$(service --status-all |& grep postgresql | sed -E "s/postgresql/ /" | tr -d '[:space:]')
+
+if [[ $? -gt 0 ]]; then
+  exit
+fi
+
+if [[ "${status}" == "[+]" ]]; then
+  echo "on"
+  echo "on"
+  echo ""
+else
+  echo "off"
+  echo "off"
+  echo ""
+fi
