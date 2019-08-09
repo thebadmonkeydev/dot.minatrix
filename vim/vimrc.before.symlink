@@ -5,6 +5,8 @@ let mapleader = ","
 set nobackup
 set noswapfile
 
+set nocp
+
 " Text settings
 set encoding=utf-8
 set tabstop=2

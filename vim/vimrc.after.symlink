@@ -1,5 +1,4 @@
-color railscasts
-
+colorscheme badmonkey
 " Maps tab helpers prefixed with `t`
 nnoremap th :tabfirst<CR>
 nnoremap tk :tabprev<CR>
@@ -113,12 +112,16 @@ hi GitBranch ctermbg=none ctermfg=4 cterm=none
 hi GitBranchBracket ctermbg=none ctermfg=20 cterm=none
 hi LineNR ctermbg=none ctermfg=8 cterm=none
 hi EndOfBuffer ctermbg=none ctermfg=8
-hi Cursor ctermbg=8 ctermfg=none
-hi iCursor ctermbg=8 ctermfg=none
-"hi rubySymbol ctermbg=none ctermfg=4
+"hi Cursor ctermbg=8 ctermfg=none
+"hi iCursor ctermbg=8 ctermfg=none
+"hi Comment term=bold ctermfg=137 guifg=#af875f
+"hi TabLine term=underline cterm=underline ctermfg=15 ctermbg=8 gui=underline guibg=DarkGrey
+
+"hi rubySymbol ctermbg=none ctermfg=5
+"hi rubyConstant ctermbg=none ctermfg=4
+"hi rubyClassName ctermbg=none ctermfg=3
 "hi CursorLineNR ctermbg=96 ctermfg=8
 "hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
-"set cursorline
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -161,3 +164,16 @@ vmap ; :
 " ctag + ctlp
 nnoremap <leader>. :CtrlPTag<cr>
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" Snippet manager
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="horizontal"
+nmap <leader>ue :UltiSnipsEdit <CR>
+nmap <leader>uE :UltiSnipsEdit! <CR>
+let g:UltiSnipsSnippetsDir="~/.vim/bundle/custom-snippets/UltiSnips"
+
+let g:limelight_paragraph_span = 1
+let g:limelight_conceal_ctermfg = 'black'
+let g:vim_markdown_toc_autofit = 1

@@ -21,10 +21,12 @@ set-option -g set-titles-string "#S"
 set-option -g status-fg default
 set-option -g status-bg default
 set-option -g status-justify centre
-set-option -g status-left-length 25
-set-option -g status-left '#[fg=green][ #[fg=red]#h #[fg=green]][#[fg=default]'
-set-option -g status-right-length 25
-set-option -g status-right '#[fg=green]][ #[fg=red]%m/%d %H:%M #[fg=green]]#[fg=default]'
-set-window-option -g window-status-current-format '#[fg=red,bg=default]( #[fg=green,bright,bg=default]#I:#W#[fg=red,bg=default] )#[fg=default]'
+#set-option -g status-left-length 25
+#set-option -g status-left '#[fg=green][ #[fg=red]#h #[fg=green]][#[fg=default]'
+set-option -g status-left ''
+#set-option -g status-right-length 25
+#set-option -g status-right '#[fg=green]][ #[fg=red]%m/%d %H:%M #[fg=green]]#[fg=default]'
+set-option -g status-right ''
+set-window-option -g window-status-current-format '#[fg=red,bg=default]‹ #[fg=green,bright,bg=default]#I:#W#[fg=red,bg=default] ›#[fg=default]'
 set-window-option -g window-status-format '#[fg=default]  #I:#W  #[fg=default]'
 set-window-option -g window-status-activity-style 'fg=yellow'

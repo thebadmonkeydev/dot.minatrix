@@ -1,11 +1,12 @@
 # vim: ft=sh
 
-set -g default-terminal "screen-256color"
+set -g default-terminal "rxvt-unicode-256color"
 setw -g xterm-keys on
 set -g history-limit 9999
 
 set -g default-shell "/bin/bash"
 set -g default-command "/bin/bash --login"
+#set -g default-shell "/bin/zsh"
 
 bind C-d detach
 bind r source-file ~/.tmux.conf

@@ -35,3 +35,5 @@ alias pomo='~/dot.minatrix/bin/pomodoro work &'
 alias bomo='~/dot.minatrix/bin/pomodoro short &'
 
 alias pql='docker run -e POSTGRES_USER=michael -p 5432:5432 -v /var/lib/postgresql/data:/var/lib/postgresql/data postgres -c log_statement=all'
+
+alias stardew='GOG\ Games/Stardew\ Valley/start.sh'
